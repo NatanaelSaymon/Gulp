@@ -3,11 +3,8 @@
 Gulp.js é uma ferramenta de automação de tarefas em JavaScript. Tarefas como minificar, otimizar e compilar arquivos, tão repetitivas e necessárias ao desenvolvimento, podem ser automatizadas com o Gulp.
 
 **Node.js** — um ambiente que permite a execução JavaScript no lado do servidor, para a web.
-
 **Npm** — um gerenciador de pacotes para Node.js. Uma ferramenta que permite configurar rápida e facilmente ambientes e plugins Node localmente.
-
 **Local vs. Global** — Node.js é instalado globalmente, mas Gulp e todos os seus plugins serão instalados localmente, por projeto.
-
 **Executor de Tarefa** — Um executor de tarefa como Gulp automatiza todos os seus processos para que você não tenha que pensar sobre eles. O Gulp requer um pacote.json e gulpfile.js.
 
 ## Passos
@@ -41,7 +38,7 @@ Se estiver tudo correto, esse comando mostrará a versão do Node instalada.
 npm install gulp-cli --global
 ````
 
-<br><br>
+<br>
 
 ## Passo 3 - Instalar Node e Gulp Locamente
 
@@ -79,7 +76,7 @@ npm install --save-dev gulp
 
 (--save-dev: tem objetivo de adicionar o gulp como uma dependência de desenvolvimento (dev dependency) Todas as dependencias do projeto estao no arquivo package.json)
 
-<br><br>
+<br>
  
 
 Verifique se esta tudo funcionado corretamente, para isso: gulp --version
@@ -88,7 +85,7 @@ deve aparecer as versoes da CLI e Local
 
 Ex:
 
-CLI version 2.0.1
+CLI version 2.0.1 <br>
 Local version 4.0.0
 
 <br><br>
@@ -96,6 +93,7 @@ Local version 4.0.0
 ## Instalando Plugins do Gulp
 
 - **Gulp Sass** - para compilar SCSS para CSS.
+- **node-sass** - necessario para funcionar gulp-sass.
 - **Gulp Autoprefixer** - para adicionar automaticamente os prefixos dos browsers nas regras CSS.
 - **Gulp cssnano** - para minificar e otimizar CSS.
 
@@ -103,10 +101,10 @@ Isso já fará um fluxo de trabalho interessante — você pode escrever SCSS se
 
 <br><br>
 
-Instale os 3 de uma vez com: 
+Instale os 4 de uma vez com: 
 
 ````js
-npm install --save-dev gulp-sass gulp-autoprefixer gulp-cssnano
+npm install --save-dev gulp-sass node-sass gulp-autoprefixer gulp-cssnano 
 ````
 
 Se você verificar o seu package.json, você notará que uma nova seção foi adicionada.
@@ -114,6 +112,7 @@ Se você verificar o seu package.json, você notará que uma nova seção foi ad
 ````js
 "devDependencies": {
     "gulp": "^3.9.1",
+    "node-sass": "^4.14.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-sass": "^3.1.0"
@@ -131,9 +130,9 @@ Agora vamos criar 2 diretorios:
 
 **src**: arquivos de origem
 
-<br><br>
-
 <img src="https://miro.medium.com/max/194/1*LNQWz9TWeqcbpPH7YWZAzA.jpeg">
+
+<br><br>
 
 ## Passo 6 - Configurar tarefas
 
@@ -188,35 +187,4 @@ Dentro da pasta do projeto crie um arquivo de configuracao do Gulp: **gulpfile.j
 <br><br>
 **Line 22** - informamos ao gulp que ele deve observar qualquer alteração que aconteça no diretório e execute a função compilaSass() .
 <br><br>
-Agora basta executar via terminal o comando **gulp** as mudancas estao sendo verificadas com gulp.watch.
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Observacao
-
-O gulp eh divido por tarefas, ex: 
-
-- tarefa responsavel pelo css
-- tarefa responsavel pelo javascript
-- tarefa responsavel pela otmizacao das imagens
---
-
-
-
-
-
-
-
-
-
-https://medium.com/gummaoficial/compilando-sass-com-gulp-ed1e5f9ed417
+Agora basta executar via terminal o comando **gulp** as mudancas estao sendo verificadas com **gulp.watch**.
