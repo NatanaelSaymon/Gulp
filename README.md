@@ -3,8 +3,11 @@
 Gulp.js é uma ferramenta de automação de tarefas em JavaScript. Tarefas como minificar, otimizar e compilar arquivos, tão repetitivas e necessárias ao desenvolvimento, podem ser automatizadas com o Gulp.
 
 **Node.js** — um ambiente que permite a execução JavaScript no lado do servidor, para a web.
+
 **Npm** — um gerenciador de pacotes para Node.js. Uma ferramenta que permite configurar rápida e facilmente ambientes e plugins Node localmente.
+
 **Local vs. Global** — Node.js é instalado globalmente, mas Gulp e todos os seus plugins serão instalados localmente, por projeto.
+
 **Executor de Tarefa** — Um executor de tarefa como Gulp automatiza todos os seus processos para que você não tenha que pensar sobre eles. O Gulp requer um pacote.json e gulpfile.js.
 
 ## Passos
