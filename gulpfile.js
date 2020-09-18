@@ -3,11 +3,9 @@
 
 const gulp = require('gulp');
 const rename = require('gulp-rename')
-const { parallel } = require('gulp');
 const sass = require('gulp-sass'); 
 sass.compiler = require("node-sass"); //necessario para funcionar gulp-sass
 const cssnano = require('gulp-cssnano');
-const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('default', watch);
@@ -27,6 +25,4 @@ function compilaSass(){
 function watch(){
     gulp.watch("src/scss/**/*.scss", compilaSass)
 }
-
-// exports.default = parallel( compilaSass );
 
