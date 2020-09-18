@@ -10,32 +10,23 @@ const cssnano = require('gulp-cssnano');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 
+gulp.task('default', watch);
+
 gulp.task('sass', compilaSass);
 
 function compilaSass(){
     return gulp
-        .src("src/scss/*.scss")
+        .src("src/scss/**/*.scss")
         .pipe(sass({outputStyle:'compressed'}).on('error', sass.logError)) //converter sass para css com gulp-sass
-        .pipe(rename({extname:'.min.css'}))
-        .pipe(gulp.dest("src/css/"));
+        .pipe(autoprefixer())
+        .pipe(cssnano())
+        .pipe(rename({extname:'.min.css'})) //renomeando arquivo
+        .pipe(gulp.dest("src/css/")); //CSS mimificado com gulp-sass
 }
 
-exports.default = parallel( compilaSass );
+function watch(){
+    gulp.watch("src/scss/**/*.scss", compilaSass)
+}
 
-// gulp.task('workflow', function(){
-//     gulp.src('./src/sass/**/*.scss')
-//         .pipe(sourcemaps.init())
-//         .pipe(sass().on('error', sass.logError))
-//         .pipe(autoprefixer({
-//             browser: ['last 2 versions'],
-//             cascade: false
-//         }))
-//         
-//         .pipe(sourcemaps.write('./'))
-//     .pipe(gulp.dest('./dist/css/'))
-// });
-
-// gulp.task('default', function(){
-//     gulp.watch('./src/sass/**/*.scss', ['workflow']);
-// });
+// exports.default = parallel( compilaSass );
 

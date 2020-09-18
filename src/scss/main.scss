@@ -2,3 +2,12 @@ $color: #333;
 body{
     background-color: $color;
 }
+
+section{
+    padding: 20px;
+    margin: 30px;
+}
+
+nav{
+    display: flex;
+}
