@@ -1,193 +1,112 @@
-# Gulp - Utilizando gulp para sass
+### O que é Gulp?
 
-Gulp.js é uma ferramenta de automação de tarefas em JavaScript. Tarefas como minificar, otimizar e compilar arquivos, tão repetitivas e necessárias ao desenvolvimento, podem ser automatizadas com o Gulp.
+É uma ferramenta de automação de tarefas em JavaScript. Tarefas como **minificar**, **otimizar** e **compilar** arquivos, tão repetitivas e necessárias ao desenvolvimento, podem ser automatizadas com o **Gulp**.
 
-**Node.js** — um ambiente que permite a execução JavaScript no lado do servidor, para a web.
+Começo Rápido 
 
-**Npm** — um gerenciador de pacotes para Node.js. Uma ferramenta que permite configurar rápida e facilmente ambientes e plugins Node localmente.
-
-**Local vs. Global** — Node.js é instalado globalmente, mas Gulp e todos os seus plugins serão instalados localmente, por projeto.
-
-**Executor de Tarefa** — Um executor de tarefa como Gulp automatiza todos os seus processos para que você não tenha que pensar sobre eles. O Gulp requer um pacote.json e gulpfile.js.
-
-## Passos
-- 1 - Instalar Node.js
+- 1 - Instalar NodeJs
 - 2 - Instalar Gulp Cli globalmente
-- 3 - Instalar Node e Gulp localmente
-- 4 - Instalar plugins do Gulp
-- 5 - Criando diretorios do projeto
-- 6 - Configurar o tarefas
+- 3 - Criando o arquivo package.json no diretório do seu projeto
+- 4 - Instalar o Gulp no diretório
+- 5 - Instalar plugins do Gulp
+- 6 - Criando o arquivo **gulpfile.js** e configurando as tarefas.
 
-<br><br>
+### 1 - Instalar NodeJs
 
-## Passo 1 - Instalar Node.js
+Acesse [https://nodejs.org/en/](https://nodejs.org/en/) e procure a melhor forma de instalar o Node para você.
 
-Acesse <a href="https://nodejs.org/en/" target="_blank">https://nodejs.org/en/</a> e procure a melhor forma de instalar o Node para você.
+Ao instalar o NodeJs, o gerenciador de pacotes **NPM** vem junto. Para checar a versão do Node e do NPM, abra o git bash e digite:
 
-<br>
+```bash
+node --version
+```
 
-Para checar se o Node está instalado, abra a linha de comando e digite:
+```bash
+npm --version
+```
 
-````js
-node -v
-````
+*Se estiver tudo correto, esse comando mostrará a versão do Node e do npm instalado.*
 
-Se estiver tudo correto, esse comando mostrará a versão do Node instalada.
+### 2 - Instalar Gulp CLI globalmente
 
+Abra o git bash e digite o comando abaixo:
 
-## Passo 2 - Instalar Gulp CLI globalmente
+```bash
+npm install -g gulp-cli
+```
 
-````js
-npm install gulp-cli --global
-````
+### 3 - Criando o arquivo package.json no diretório do seu projeto
 
-<br>
-
-## Passo 3 - Instalar Node e Gulp Locamente
-
-Crie a pasta do projeto e rode o comando:
-
-````js
+```bash
 npm init
-````
+```
 
-Este comando irá guiá-lo através da criação de um package.json genérico. É bastante direto, mas simplesmente pressione enter se você não tiver certeza ou não quiser preencher algo.
+*Isso dará ao seu projeto um nome, versão, descrição, etc. É bastante direto, mas simplesmente pressione enter se você não tiver certeza ou não quiser preencher algo.*
 
-````js
-{
-  "name": "site",
-  "version": "1.0.0",
-  "description": "Iniciando com Gulp",
-  "main": "index.js",
-  "scripts": {
-     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "gulp",
-    "sass"
-  ],
-  "author": "Natanael Saymon",
-  "license": ""
-}
-````
+### 4 - Instalar o Gulp no diretório
 
-Agora vamos executar um comando para instalar o Gup localmente.
-
-````js
+```bash
 npm install --save-dev gulp
-````
+```
 
-(--save-dev: tem objetivo de adicionar o gulp como uma dependência de desenvolvimento (dev dependency) Todas as dependencias do projeto estao no arquivo package.json)
+*( **--save-dev**: tem objetivo de adicionar o **gulp** como uma dependência de desenvolvimento (dev dependency) Todas as dependências do projeto estão no arquivo **package.json** )*
 
-<br>
- 
+### 4.1 - Verifique se esta tudo funcionado corretamente, para isso:
 
-Verifique se esta tudo funcionado corretamente, para isso: gulp --version
+```bash
+gulp --version
+```
 
-deve aparecer as versoes da CLI e Local
+Deve aparecer as versões do Gulp CLI e do Gulp instalado localmente. Ex:
 
-Ex:
-
-CLI version 2.0.1 <br>
+```bash
+CLI version 2.0.1
 Local version 4.0.0
+```
 
-<br><br>
+### 5 - Instalando os Plugins do Gulp
 
-## Instalando Plugins do Gulp
+Instalaremos os plugins como Dependência de Desenvolvimento **—save-dev**
 
-- **Gulp Sass** - para compilar SCSS para CSS.
-- **node-sass** - necessario para funcionar gulp-sass.
-- **Gulp Autoprefixer** - para adicionar automaticamente os prefixos dos browsers nas regras CSS.
-- **Gulp cssnano** - para minificar e otimizar CSS.
+```bash
+npm install --save-dev gulp-sass gulp-concat gulp-uglifycss
+```
 
-Isso já fará um fluxo de trabalho interessante — você pode escrever SCSS sem se preocupar com a adição de prefixos ou minificar manualmente o código.
+Se você verificar o seu **package.json**, você notará que uma nova seção foi adicionada.
 
-<br><br>
-
-Instale os 4 de uma vez com: 
-
-````js
-npm install --save-dev gulp-sass node-sass gulp-autoprefixer gulp-cssnano 
-````
-
-Se você verificar o seu package.json, você notará que uma nova seção foi adicionada.
-
-````js
+```json
 "devDependencies": {
-    "gulp": "^3.9.1",
-    "node-sass": "^4.14.1",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-sass": "^3.1.0"
-  }
-````
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglifycss": "^1.1.0"
+ }
+```
 
-<br><br>
+### 6 - Criando o arquivo **gulpfile.js** e configurando as tarefas.
 
+Dentro da pasta do projeto crie um arquivo de configuração chamado **gulpfile.js** Neste arquivos iremos definir variáveis para cada plugin e configurar a tarefa.
 
-## Passo 5 - Estrutura de Pasta do Projeto
+```jsx
+const gulp = require('gulp')
+const { watch } = require('gulp')
+const sass = require('gulp-sass')
+const uglifycss = require('gulp-uglifycss')
+const concat = require('gulp-concat')
 
-Agora vamos criar 2 diretorios: 
+function compilaSass(){
+    return gulp.src('src/scss/**/*.scss')//filtrando os arquivos que vamos precisar
+        .pipe(sass().on('error', sass.logError))
+        .pipe(uglifycss({ "ugliComments": true }))//pega todo o codigo para ser minificado
+        .pipe(concat('styles.min.css'))//pega todos os arquivos que ja foram compilados e concatena e gera um arquivo no final
+        .pipe(gulp.dest('src/css'))//esse pipe vamos dizer qual destino iremos querer que o codigo fique
+}
 
-**dist**: arquivos de destino
+exports.default = function(){
+    watch('src/scss/**/*.scss', compilaSass)
+}
+```
 
-**src**: arquivos de origem
+Agora basta abrir o **gitbash** e digitar o comando: **gulp** 
 
-<img src="https://miro.medium.com/max/194/1*LNQWz9TWeqcbpPH7YWZAzA.jpeg">
-
-<br><br>
-
-## Passo 6 - Configurar tarefas
-
-Dentro da pasta do projeto crie um arquivo de configuracao do Gulp: **gulpfile.js**. Nele iremos definir uma variavel para cada plugin.
-
-````js
-'use strict';
-
-/*line 01*/const gulp = require('gulp');
-/*line 02*/const rename = require('gulp-rename');
-/*line 03*/const sass = require('gulp-sass'); 
-/*line 04*/sass.compiler = require("node-sass");
-/*line 05*/const cssnano = require('gulp-cssnano');
-/*line 06*/const autoprefixer = require('gulp-autoprefixer');
-/*line 07*/
-/*line 08*/gulp.task('default', watch);
-/*line 09*/
-/*line 10*/gulp.task('sass', compilaSass);
-/*line 11*/
-/*line 12*/function compilaSass(){
-/*line 13*/    return gulp
-/*line 14*/        .src("src/scss/**/*.scss")
-/*line 15*/        .pipe(sass({outputStyle:'compressed'}).on('error', sass.logError)) 
-/*line 16*/        .pipe(autoprefixer())
-/*line 17*/        .pipe(cssnano())
-/*line 18*/        .pipe(rename({extname:'.min.css'}))
-/*line 19*/        .pipe(gulp.dest("src/css/"));
-/*line 20*/}
-/*line 21*/
-/*line 22*/function watch(){
-/*line 23*/    gulp.watch("src/scss/**/*.scss", compilaSass)
-/*line 24*/}
-````
-
-<br><br>
-
-## Explicando: 
-
-**Line 1** - a instrução diz ao node.js para procurar na pasta node_modules por um pacote chamado gulp. Quando o pacote é encontrado, atribuímos seu conteúdo à constante gulp. Raciocínio igual pode ser aplicado as linha 2 a 6.
-<br><br>
-**Line 8** - atribuimos a função **watch()** à tarefa **default** que pode ser chamada simplesmente digitando **gulp** na linha do seu terminal.
-<br><br>
-**Line 10** - atribuimos a **função compilaSass** à tarefa nomeada como **sass**.
-<br><br>
-**Line 14** - a instrução .src(“scr/scss/**/*.scss") diz à tarefa para procurar por todos os arquivos .scss que estão localizados na pasta src/scss bem como em suas sub-pastas, por isto a inclusão do **.
-<br><br>
-**Line 15** - executamos o plug-in gulp-sass para efetuar a compilação dos arquivos .scss em .css.
-<br><br>
-**Line 18** - estamos renomeando o arquivo gerando pelo scss e inserindo a extensao .ccc
-<br><br>
-**Line 19** - a instrução gulp.dest("src/css") diz à tarefa para onde enviar os arquivos já compilados para .css.
-<br><br>
-**Line 22** - informamos ao gulp que ele deve observar qualquer alteração que aconteça no diretório e execute a função compilaSass() .
-<br><br>
-Agora basta executar via terminal o comando **gulp** as mudancas estao sendo verificadas com **gulp.watch**.
+Pronto agora toda modificação feita em algum arquivo do Sass o gulp vai ficar assistindo e vai converter para CSS.
